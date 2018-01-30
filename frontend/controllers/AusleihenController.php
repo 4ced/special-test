@@ -46,6 +46,45 @@ class AusleihenController extends Controller
         ]);
     }
 
+    public function actionFinalindex() {
+        $thisuser = \Yii::$app->user->identity->id;
+        $grpVerliehen = $this->getVerliehenFromUser($thisuser);
+        $grpAusgeliehen = $this->getAusgeliehenFromUser($thisuser);
+
+        return $this->render('finalindex', [
+            'grpVerliehen' => $grpVerliehen,
+            'grpAusgeliehen' => $grpAusgeliehen,
+        ]);
+
+
+    }
+
+    public function getVerliehenFromUser($user_id) {
+        $aryAusleihenIds = array();
+        $ausleihen = Ausleihen::find()->where('user_id = :id and status = :status', ['id' => $user_id, 'status' => 1])->asArray()->all();
+        if (!empty($ausleihen)) {
+          $aryUserIds = array();
+          foreach ($ausleihen as $key => $ausleihe) {
+            $groupKey = $ausleihe["ausleiher"];
+            $aryAusleihenIds[$groupKey][] = $ausleihe["buch_id"];
+          }
+          return $aryAusleihenIds;
+      }
+    }
+
+    public function getAusgeliehenFromUser($user_id) {
+        $aryAusleihenIds = array();
+        $ausleihen = Ausleihen::find()->where('ausleiher = :id and status = :status', ['id' => $user_id, 'status' => 1])->asArray()->all();
+        if (!empty($ausleihen)) {
+          $aryUserIds = array();
+          foreach ($ausleihen as $key => $ausleihe) {
+            $groupKey = $ausleihe["user_id"];
+            $aryAusleihenIds[$groupKey][] = $ausleihe["buch_id"];
+          }
+          return $aryAusleihenIds;
+      }
+    }
+
     /**
      * Lists all Ausleihen models.
      * @return mixed

@@ -177,7 +177,8 @@ class BuecherController extends Controller
       $aryAusleihenIds = array(); $ausleihen = Ausleihen::find()->where('user_id = :id', ['id' => $user_id])->asArray()->all();
     }
     public function getFriendsOfUser($user_id) {
-      $aryFriendIds = array(); $relations = Relation::find()->where('(user_id_big = :id or user_id = :id) and status = :status', ['id' => $user_id, 'status' => 1])->asArray()->all();
+      $aryFriendIds = array();
+      $relations = Relation::find()->where('(user_id_big = :id or user_id = :id) and status = :status', ['id' => $user_id, 'status' => 1])->asArray()->all();
       if (!empty($relations)) {
         $aryUserIds = array();
         foreach ($relations as $key => $relation) {
