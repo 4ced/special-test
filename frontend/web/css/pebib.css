@@ -1,0 +1,272 @@
+.wrap > .container {
+    /* padding: 70px 15px 20px;
+    width: 940px; */
+}
+.mycol{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.patrick-col {
+  text-align: right;
+  padding: 0px !important;
+}
+
+.btn-patrick {
+  font-size: 40px;
+  vertical-align: middle;
+  padding: 10px;
+  /* margin: 20px; */
+}
+
+
+.pebib-style {
+  border-radius: 0 !important;
+  background-color: #13becd !important;
+  font-family: "Verdana" !important;
+}
+
+.buecher-index > div {
+    background-color: #13becd !important;
+}
+
+.pebibtab > li > a {
+    border-radius: 0 !important;
+    background-color: #13becd !important;
+    font-family: "Verdana" !important;
+    color: #fff !important;
+    font-weight: 400 !important;
+    font-size: 25px !important;
+    margin-right: 20px !important;
+    padding: 25px 25px 10px 25px !important;
+    border: 3px solid #13becd !important;
+}
+.pebibtab > li.active > a {
+    /* background-color: red !important; */
+    padding: 25px !important;
+    background-color: #13becd;
+}
+
+
+/* .post {
+  height: 200px;
+} */
+.well {
+  border-radius: 0 !important;
+  background-color: #0D6060 !important;
+}
+
+.mydetailview th {
+  width: 30%;
+  vertical-align: text-top !important;
+  margin-right: 10px;
+  padding: 10px;
+}
+.mydetailview td {
+  /* width: 30%; */
+  vertical-align: text-top !important;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.mydetailview {
+  padding: 10px;
+  font-size: 25px;
+  vertical-align: text-top !important;
+}
+
+.wrap {
+  background-color: #3f403f;
+  color: #fff;
+}
+
+.login {
+  margin-top: 0px;
+}
+.mynavbar a, button {
+  color: #fff !important;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.infobox {
+  background-color: #13787c;
+  height: 380px;
+}
+
+.viewbox {
+  background-color: #13787c;
+  height: 200px;
+  margin-top: 70px;
+}
+.mydivimg {
+  text-align: center;
+}
+
+.myimg{
+  width: 80%;
+}
+
+.mytab a {
+  border-radius: 0 !important;
+  background-color: #0d6060 !important;
+  font-family: "Verdana";
+  color: #fff !important;
+}
+
+.mytab a > li:active {
+  border-radius: 0 !important;
+  background-color: #13787c !important;
+  font-family: "Verdana";
+  color: red !important;
+}
+
+.mybtn {
+  background-color: #13becd !important;
+}
+
+.mynavbar {
+  background-color: #13becd !important;
+  border-color: #0d8184;
+  color: #fff;
+}
+
+body{
+  background:#3f403f;
+}
+
+.btn-denise {
+  height: 150px;
+  width: 100%;
+  font-family: "Verdana";
+  font-size: 60px;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px !important;
+  color: #ffffff;
+  border-radius:0 !important;
+}
+
+.btn-msg {
+  background: #13becd;
+  text-align: left !important;
+}
+
+.btn-about {
+  background: #13becd;
+  font-size: 60px !important;
+  text-align: left !important;
+}
+
+.btn-user {
+  /* border-radius:0; */
+  background: #71ccd4;
+  /* color: #ffffff; */
+  /* margin-top: 10px;
+  margin-bottom: 10px; */
+  /* margin-left: 10px;
+  margin-right: 10px; */
+
+}
+
+.btn-teilen {
+  /* border-radius:0; */
+  background: #337b7c;
+  /* color: #ffffff; */
+  /* margin-top: 10px;
+  margin-bottom: 10px; */
+  /* margin-left: 10px;
+  margin-right: 10px; */
+  /* height: 150px;
+  width: 100%;
+  font-family: "Verdana";
+  font-size: 60px;
+  text-align: left; */
+
+}
+
+.btn-friends {
+  /* border-radius:0; */
+  background: #50bfcd;
+  /* color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 10px; */
+  /* margin-left: 10px;
+  margin-right: 10px; */
+  /* height: 150px;
+  width: 100%;
+  font-family: "Verdana";
+  font-size: 60px;
+  text-align: left; */
+
+}
+
+.btn-book {
+  /* border-radius:0; */
+  background: #71ccd4;
+  /* color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 10px; */
+  /* margin-left: 10px;
+  margin-right: 10px; */
+  /* height: 150px;
+  width: 100%;
+  font-family: "Verdana";
+  font-size: 60px;
+  text-align: left; */
+
+}
+
+.btn-place {
+  /* border-radius:0; */
+  background: #21bfcd;
+  /* color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 10px; */
+  /* margin-left: 10px;
+  margin-right: 10px; */
+  /* height: 150px;
+  width: 100%;
+  font-family: "Verdana";
+  font-size: 60px;
+  text-align: left; */
+
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #109699;
+}
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open > .dropdown-toggle.btn-secondary {
+    background: #109699;
+    color:#ffffff;
+}
+
+.btn-user:hover, .btn-user:focus, .btn-user:active, .btn-user.active, .open > .dropdown-toggle.btn-user {
+    background: #109699;
+    color:#ffffff;
+}
+
+.btn-teilen:hover, .btn-teilen:focus, .btn-teilen:active, .btn-teilen.active, .open > .dropdown-toggle.btn-teilen {
+    background: #109699;
+    color:#ffffff;
+}
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
+
+.btn-friends:hover, .btn-friends:focus, .btn-friends:active, .btn-friends.active, .open > .dropdown-toggle.btn-friends {
+    background: #109699;
+    color:#ffffff;
+}
+
+.btn-book:hover, .btn-book:focus, .btn-book:active, .btn-book.active, .open > .dropdown-toggle.btn-book {
+    background: #109699;
+    color:#ffffff;
+}
+
+.btn-place:hover, .btn-place:focus, .btn-place:active, .btn-place.active, .open > .dropdown-toggle.btn-place {
+    background: #109699;
+    color:#ffffff;
+}
