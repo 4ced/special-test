@@ -49,6 +49,8 @@ AppAsset::register($this);
           array('label' => Yii::t("app", 'Meine Bücher'), 'url' => array('/buecher/finalbuecher')),
           array('label' => Yii::t("app", 'Standorte'), 'url' => array('/orte/myindex')),
           array('label' => Yii::t("app", 'Profil'), 'url' => array('/user/me')),
+          array('label' => Yii::t("app", 'Ausleihen'), 'url' => array('/ausleihen/finalindex')),
+          array('label' => Yii::t("app", 'Freunde'), 'url' => array('/user/finalindex')),
           // array('label'=>'Buecher', 'url'=>'#', 'items'=>array(
     			// 		// array('label' => Yii::t("app", 'Buecher-kontakte'), 'url' => array('/buecher/admin')),
     			// 	)),

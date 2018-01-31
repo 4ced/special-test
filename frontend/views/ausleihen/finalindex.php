@@ -12,14 +12,14 @@ use yii\bootstrap\Tabs;
       'items' => [
         [
           'label' => 'Ausgeliehen',
-          'content' =>   '<div class="container">' . $this->render('ausgeliehenview', [
-            '$grpAusgeliehen' => $grpAusgeliehen,
+          'content' =>   '<div class="container">' . $this->render('ausleihenview', [
+            'grpAusgeliehen' => $grpAusgeliehen,
           ]) . '</div>'
         ],
         [
           'label' => 'Verliehen',
           'content' =>   '<div class="container">' . $this->render('verliehenview', [
-            '$grpVerliehen' => $grpVerliehen,
+            'grpVerliehen' => $grpVerliehen,
           ]) . '</div>'
         ]
       ],

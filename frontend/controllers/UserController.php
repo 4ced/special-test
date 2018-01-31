@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\User;
+use common\models\Buecher;
 use common\models\UserUploadForm;
 use common\models\Relation;
 use common\models\Profilbilder;
@@ -54,6 +55,97 @@ class UserController extends Controller
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function getFriendrequestsOfUser($user_id) {
+        $aryUserIds = array();
+        $relations = Relation::find()->where('(user_id_big = :id or user_id = :id) and status = :status and user_id_action != :id', ['id' => $user_id, 'status' => 0])->asArray()->all();
+
+          if (!empty($relations)) {
+              foreach ($relations as $key => $relation) {
+                  if ($relation["user_id_big"] == $user_id) {
+                      array_push($aryUserIds, $relation["user_id"]);
+                  } else {
+                      array_push($aryUserIds, $relation["user_id_big"]);
+                  }
+              }
+              $count = count($aryUserIds);
+              // if($count = 1) {
+              //     // var_dump($aryUserIds);
+              //     // exit;
+              //     $aryUserIds = $aryUserIds[0];
+              // }
+              return $aryUserIds;
+        }
+    }
+
+    public function getFriendsOfUser($user_id) {
+        $aryUserIds = array();
+        $relations = Relation::find()->where('(user_id_big = :id or user_id = :id) and status = :status', ['id' => $user_id, 'status' => 1])->asArray()->all();
+
+          if (!empty($relations)) {
+              foreach ($relations as $key => $relation) {
+                  if ($relation["user_id_big"] == $user_id) {
+                      array_push($aryUserIds, $relation["user_id"]);
+                  } else {
+                      array_push($aryUserIds, $relation["user_id_big"]);
+                  }
+              }
+              $count = count($aryUserIds);
+              // if($count = 1) {
+              //     // var_dump($aryUserIds);
+              //     // exit;
+              //     $aryUserIds = $aryUserIds[0];
+              // }
+              return $aryUserIds;
+        }
+    }
+
+    public function getOtherUsers($user_id) {
+      $aryUser = array();
+      $aryFriends = $this->getFriendsOfUser($user_id);
+      array_push($aryFriends, $user_id);
+      $aryUser = User::find()->where(['not in','id', $aryFriends])->asArray()->all();
+      // $aryUser = User::find()->where('id != :id', ['id' => $thisuser])->asArray()->all();
+      // if (!empty($aryUser)) {
+      return $aryUser;
+      // }
+
+    }
+
+    public function getBuecherOfUser($user_id) {
+      $aryBuecher = array();
+      $aryBuecher = Buecher::find()->where('user_id = :id', ['id' => $user_id])->asArray()->all();
+      return $aryBuecher;
+    }
+
+    /**
+     * Displays a single User model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionView($id)
+    {
+        $aryBuecher = array();
+        $aryBuecher = $this->getBuecherOfUser($id);
+
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+            'aryBuecher' => $aryBuecher,
+        ]);
+    }
+
+    public function actionFinalindex() {
+      $thisuser = \Yii::$app->user->identity->id;
+      $aryFriends = $this->getFriendsOfUser($thisuser);
+      $aryFriendrequests = $this->getFriendrequestsOfUser($thisuser);
+      $aryOtherUsers = $this->getOtherUsers($thisuser);
+
+      return $this->render('finalindex', [
+          'aryFriends' => $aryFriends,
+          'aryFriendrequests' => $aryFriendrequests,
+          'aryOtherUsers' => $aryOtherUsers,
+      ]);
     }
 
     public function actionMe() {
@@ -372,17 +464,7 @@ class UserController extends Controller
 
 
 
-    /**
-     * Displays a single User model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
+
 
     /**
      * Creates a new User model.

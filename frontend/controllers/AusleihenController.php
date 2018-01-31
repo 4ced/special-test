@@ -51,6 +51,7 @@ class AusleihenController extends Controller
         $grpVerliehen = $this->getVerliehenFromUser($thisuser);
         $grpAusgeliehen = $this->getAusgeliehenFromUser($thisuser);
 
+
         return $this->render('finalindex', [
             'grpVerliehen' => $grpVerliehen,
             'grpAusgeliehen' => $grpAusgeliehen,
@@ -61,7 +62,7 @@ class AusleihenController extends Controller
 
     public function getVerliehenFromUser($user_id) {
         $aryAusleihenIds = array();
-        $ausleihen = Ausleihen::find()->where('user_id = :id and status = :status', ['id' => $user_id, 'status' => 1])->asArray()->all();
+        $ausleihen = Ausleihen::find()->where('user_id = :id and status = :status', ['id' => $user_id, 'status' => 0])->asArray()->all();
         if (!empty($ausleihen)) {
           $aryUserIds = array();
           foreach ($ausleihen as $key => $ausleihe) {
@@ -74,7 +75,7 @@ class AusleihenController extends Controller
 
     public function getAusgeliehenFromUser($user_id) {
         $aryAusleihenIds = array();
-        $ausleihen = Ausleihen::find()->where('ausleiher = :id and status = :status', ['id' => $user_id, 'status' => 1])->asArray()->all();
+        $ausleihen = Ausleihen::find()->where('ausleiher = :id and status = :status', ['id' => $user_id, 'status' => 0])->asArray()->all();
         if (!empty($ausleihen)) {
           $aryUserIds = array();
           foreach ($ausleihen as $key => $ausleihe) {
