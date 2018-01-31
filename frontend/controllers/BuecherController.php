@@ -339,6 +339,7 @@ class BuecherController extends Controller
               $model->autor = $aryData["values"]["autor"];
               $model->kategorie = $aryData["values"]["kategorie"];
               $model->seitenzahl = $aryData["values"]["seitenzahl"];
+              $model->imageFile = $aryData["values"]["imagelink"];
               // return $this->render('create', [
               //     'model' => $model,
               // ]);
@@ -350,14 +351,34 @@ class BuecherController extends Controller
               $model->autor = $a->autor;
               $model->kategorie = $a->kategorie;
               $model->seitenzahl = $a->seitenzahl;
+              $model->imageFile = $a->imageFile;
             }
-            return $this->render('create2', [
+            return $this->render('create4', [
                 'model' => $model,
             ]);
           // var_dump($aryData);
         } else if (($model->load(Yii::$app->request->post()) && $model->validate())) {
+            var_dump($_POST);
+            // var_dump($model->imageFile);
+            exit;
             $model->user_id = \Yii::$app->user->identity->id;
+            $up = UploadedFile::getInstance($model, 'imageFile');
             $model->save();
+            if(empty($up)) {
+                // var_dump($model->imageFile);
+                // exit;
+                $path = realpath(dirname(__FILE__) . "/../../frontend/web/images/covers");
+                $filename = $model->buecher_id;
+                $filepath = $path. "/" .$filename;
+                file_put_contents($filepath, file_get_contents($model->imageFile));
+            } else {
+                $model->imageFile = $up->name;
+                $path = realpath(dirname(__FILE__) . "/../../frontend/web/images/covers");
+                // $path = realpath(dirname(__FILE__) . "/../../uploads/covers/");
+                $filename = $model->buecher_id . "." . strtolower($up->extension);
+                $filepath = $path. "/" .$filename;
+                $up->saveAs($filepath);
+            }
             return $this->redirect(['view', 'id' => $model->buecher_id]);
         } else if (isset($_POST['print'])) {
             echo "print code here ";

@@ -10,10 +10,14 @@ use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Buecher */
 /* @var $form yii\widgets\ActiveForm */
+var_dump($model->imageFile);
 ?>
 
 <!-- <div class="buecher-form"> -->
-<?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
+<?php $form = ActiveForm::begin(['layout' => 'horizontal']);
+// echo $form->field($model, 'imageFile')->hiddenInput(['value'=> $model->imageFile])->label(false)
+echo $form->field($model, 'imageFile')->textInput(['maxlength' => true]);
+?>
 <div class="buecher-view">
   <div class="row">
     <div class="col-md-12 patrick-col">
@@ -23,7 +27,18 @@ use yii\bootstrap\ActiveForm;
   </div>
   <div class="row">
     <div class="col-md-3" style="height: 500px;">
-      <?php echo Html::img('@web/images/covers/default.png', $options = ["class" => "myimg"] ) ?>
+      <?php
+      if (isset($model->imageFile)) {
+          if(file_exists('@web/images/covers/' .$model->imageFile)) {
+              echo Html::img('@web/images/covers/' .$model->imageFile, $options = ["class" => "myimg"] );
+          } else {
+              echo Html::img($model->imageFile, $options = ["class" => "myimg"] );
+          }
+
+      } else {
+          echo Html::img('@web/images/covers/default.png', $options = ["class" => "myimg"]);
+      }
+      ?>
 
       <?= $form->field($model, 'imageFile')->fileInput() ?>
 
@@ -34,12 +49,12 @@ use yii\bootstrap\ActiveForm;
 
         <?= $form->field($model, 'isbn')->textInput() ?>
         <?php
-        $list = ArrayHelper::map(Ort::find()->all(), 'ort_id', 'name');
-        echo $form ->field($model, 'ort_id')->dropdownList($list, ['prompt'=>'Select Category']);
+        $list = ArrayHelper::map(Ort::find()->where('user_id = :id', ['id' => \Yii::$app->user->identity->id])->all(), 'ort_id', 'name');
+        echo $form->field($model, 'ort_id')->dropdownList($list, ['prompt'=>'Select Category']);
         ?>
         <?= $form->field($model, 'titel')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'beschreibung')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'isbn')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'autor')->textInput(['autor' => true]) ?>
 
@@ -52,7 +67,7 @@ use yii\bootstrap\ActiveForm;
       </div>
       <div class="col-md-8">
 
-        <?= $form->field($model, 'isbn')->textarea(['rows' => '6']) ?>
+        <?= $form->field($model, 'beschreibung')->textarea(['rows' => '6']) ?>
       </div>
     </div>
   <?php ActiveForm::end(); ?>

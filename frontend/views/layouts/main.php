@@ -51,6 +51,7 @@ AppAsset::register($this);
           array('label' => Yii::t("app", 'Profil'), 'url' => array('/user/me')),
           array('label' => Yii::t("app", 'Ausleihen'), 'url' => array('/ausleihen/finalindex')),
           array('label' => Yii::t("app", 'Freunde'), 'url' => array('/user/finalindex')),
+          array('label' => Yii::t("app", '+'), 'url' => array('/buecher/autobuch')),
           // array('label'=>'Buecher', 'url'=>'#', 'items'=>array(
     			// 		// array('label' => Yii::t("app", 'Buecher-kontakte'), 'url' => array('/buecher/admin')),
     			// 	)),
@@ -76,13 +77,13 @@ AppAsset::register($this);
     			// 		array('label' => Yii::t("app", 'Ausleihebuch-new'), 'url' => array('/ausleihebuch/new')),
     			// 		// array('label' => Yii::t("app", 'Buecher-kontakte'), 'url' => array('/buecher/admin')),
     			// 	)),
-            array('label'=>'Regale', 'url'=>'#', 'items'=>array(
-                array('label' => Yii::t("app", 'Orte-index'), 'url' => array('/orte/index')),
-                array('label' => Yii::t("app", 'Orte-myindex'), 'url' => array('/orte/myindex')),
-                array('label' => Yii::t("app", 'Orte-create'), 'url' => array('/orte/create')),
-                array('label' => Yii::t("app", 'Orte-new'), 'url' => array('/orte/new')),
-                // array('label' => Yii::t("app", 'Buecher-kontakte'), 'url' => array('/buecher/admin')),
-              )),
+            // array('label'=>'Regale', 'url'=>'#', 'items'=>array(
+            //     array('label' => Yii::t("app", 'Orte-index'), 'url' => array('/orte/index')),
+            //     array('label' => Yii::t("app", 'Orte-myindex'), 'url' => array('/orte/myindex')),
+            //     array('label' => Yii::t("app", 'Orte-create'), 'url' => array('/orte/create')),
+            //     array('label' => Yii::t("app", 'Orte-new'), 'url' => array('/orte/new')),
+            //     // array('label' => Yii::t("app", 'Buecher-kontakte'), 'url' => array('/buecher/admin')),
+            //   )),
               array('label'=>'User', 'url'=>'#', 'items'=>array(
                   array('label' => Yii::t("app", 'User-index'), 'url' => array('/user/index')),
                   array('label' => Yii::t("app", 'User-me'), 'url' => array('/user/seeme')),

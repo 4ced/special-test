@@ -1,10 +1,13 @@
 <?php
 namespace frontend\assets;
 
+use yii\helpers\Html;
+
 class ApiToApp {
 
-  public function getBookFormISBN($isbn) {
-    // $isbn = '9783785564561';
+  public function getBookFormISBN($isbn = null) {
+    $isbn = '9783785564561';
+    $isbn = '9783551555557';
     $aryReturn = array();
     $aryReturn["ErrorNo"] = 0;
     $aryReturn["ErrorType"] = "";
@@ -16,7 +19,8 @@ class ApiToApp {
     }
 
     $aryData = json_decode($pageContent, true);
-    // var_dump($aryData);
+    // echo Html::img('http://books.google.com/books/content?id=WsD0AwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', $options = ["class" => "myimg"] );
+    // var_dump($aryData['items'][0]['volumeInfo']["imageLinks"]["thumbnail"]);
     // exit;
 
 
@@ -32,12 +36,55 @@ class ApiToApp {
       $aryReturn["ErrorNo"] = 4;
       return $aryReturn;
     } else {
-      $aryReturn["values"]["title"] = $aryData['items'][0]['volumeInfo']['title'];
-      $aryReturn["values"]["description"] = $aryData['items'][0]['volumeInfo']['description'];
-      $aryReturn["values"]["isbn"] = $aryData['items'][0]['volumeInfo']['industryIdentifiers'][1]["identifier"];
-      $aryReturn["values"]["autor"] = $aryData['items'][0]['volumeInfo']['authors'][0];
-      $aryReturn["values"]["seitenzahl"] = $aryData['items'][0]['volumeInfo']['pageCount'];
-      $aryReturn["values"]["kategorie"] = $aryData['items'][0]['volumeInfo']['categories'][0];
+        if(isset($aryData['items'][0]['volumeInfo']['title'])) {
+            $aryReturn["values"]["title"] = $aryData['items'][0]['volumeInfo']['title'];
+        } else {
+            $aryReturn["values"]["title"] = null;
+        }
+        if(isset($aryData['items'][0]['volumeInfo']['description'])) {
+            $aryReturn["values"]["description"] = $aryData['items'][0]['volumeInfo']['description'];
+        } else {
+            $aryReturn["values"]["description"] = null;
+        }
+        if(isset($aryData['items'][0]['volumeInfo']['industryIdentifiers'][1]["identifier"])) {
+            $aryReturn["values"]["isbn"] = $aryData['items'][0]['volumeInfo']['industryIdentifiers'][1]["identifier"];
+        } else {
+            $aryReturn["values"]["isbn"] = null;
+        }
+        if(isset($aryData['items'][0]['volumeInfo']['authors'][0])) {
+            $aryReturn["values"]["autor"] = $aryData['items'][0]['volumeInfo']['authors'][0];
+        } else {
+            $aryReturn["values"]["autor"] = null;
+        }
+        if(isset($aryData['items'][0]['volumeInfo']['pageCount'])) {
+            $aryReturn["values"]["seitenzahl"] = $aryData['items'][0]['volumeInfo']['pageCount'];
+        } else {
+            $aryReturn["values"]["seitenzahl"] = null;
+        }
+        if(isset($aryData['items'][0]['volumeInfo']['categories'][0])) {
+            $aryReturn["values"]["kategorie"] = $aryData['items'][0]['volumeInfo']['categories'][0];
+        } else {
+            $aryReturn["values"]["kategorie"] = null;
+        }
+        if(isset($aryData['items'][0]['volumeInfo']['categories'][0])) {
+            $aryReturn["values"]["kategorie"] = $aryData['items'][0]['volumeInfo']['categories'][0];
+        } else {
+            $aryReturn["values"]["kategorie"] = null;
+        }
+        if(isset($aryData['items'][0]['volumeInfo']["imageLinks"]["thumbnail"])) {
+            $aryReturn["values"]["imagelink"] = $aryData['items'][0]['volumeInfo']["imageLinks"]["thumbnail"];
+        } else {
+            $aryReturn["values"]["imagelink"] = null;
+        }
+        // var_dump( ["imageLinks"])
+    //   $aryReturn["values"]["title"] = $aryData['items'][0]['volumeInfo']['title'];
+    //   $aryReturn["values"]["description"] = $aryData['items'][0]['volumeInfo']['description'];
+    //   $aryReturn["values"]["isbn"] = $aryData['items'][0]['volumeInfo']['industryIdentifiers'][1]["identifier"];
+    //   $aryReturn["values"]["autor"] = $aryData['items'][0]['volumeInfo']['authors'][0];
+    //   $aryReturn["values"]["seitenzahl"] = $aryData['items'][0]['volumeInfo']['pageCount'];
+    //   $aryReturn["values"]["kategorie"] = $aryData['items'][0]['volumeInfo']['categories'][0];
+
+
       // $aryReturn["values"]["imagelink"] = $aryData['items'][0]['volumeInfo']['imageLinks']['thumbnail'];
       // var_dump($aryReturn);
       // exit;
